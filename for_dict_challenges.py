@@ -139,7 +139,19 @@ is_male = {
     "Миша": True,
     "Даша": False,
 }
-# ??
+for i in school:
+    spis = []
+    male, female = 0, 0
+    for j in i["students"]:  # Преобразовываем к списку именя в выбранном словаре i
+        spis.append(j["first_name"])
+    for j in range(len(spis)):  # Перебираем каждое имя
+        if (
+            is_male[spis[j]] == True
+        ):  # Сравниваем имя с буливым значением в словаре сравнения
+            male += 1
+        else:
+            female += 1
+    print(f"Класс {i["class"]}: девочки - {female}, мальчики - {male}")
 
 
 # Задание 5
@@ -158,4 +170,29 @@ is_male = {
     "Олег": True,
     "Миша": True,
 }
-# ???
+res_male, res_female = 0, 0
+for i in school:
+    spis = []
+    male, female = 0, 0
+    for j in i["students"]:  # Преобразовываем к списку именя в выбранном словаре i
+        spis.append(j["first_name"])
+    for j in range(len(spis)):  # Перебираем каждое имя
+        if (
+            is_male[spis[j]] == True
+        ):  # Сравниваем имя с буливыми значением в словаре сравнения
+            male += 1
+        else:
+            female += 1
+    if (
+        male > res_male
+    ):  # Сравниваем парней, где начальное кол-во равно 0 и присваеваем, если больше
+        res_male = male
+        res_class_male = i["class"]
+
+    if (
+        female > res_female
+    ):  # Сравниваем девочек, где начальное кол-во равно 0, так же присваеваем, если больше
+        res_female = female
+        res_class_female = i["class"]
+print(f"Больше всего мальчиков в классе - {res_class_male}, мальчиков - {res_male}")
+print(f"Больше всего девочек в классе - {res_class_female}, девочек - {res_female}")
